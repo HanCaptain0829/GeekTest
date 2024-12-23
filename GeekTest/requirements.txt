@@ -1,0 +1,9 @@
+tkcalendar~=1.6.1
+pillow~=10.4.0
+mysql~=0.0.3
+mysql-connector-python~=9.0.0
+easygui~=0.98.3
+jsonpath~=0.82.2
+urllib3~=2.2.3
+xmindparser~=1.0.9
+setuptools~=68.2.0
