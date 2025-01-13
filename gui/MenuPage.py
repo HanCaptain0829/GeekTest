@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
-from tkinter import messagebox, Menu
+from tkinter import messagebox, Menu, PhotoImage
 
 from gui.ChangePasswordPage import change_pswd
 from gui.LogPage import log_page
@@ -31,7 +31,9 @@ def menu_page(parent, username):
     # 设置窗口不可改变大小
     menu_root.resizable(False, False)
     # 设置窗口图标
-    menu_root.iconbitmap("picture/xmind.ico")
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    menu_root.iconphoto(True, icon_image)
     # 关闭按钮直接结束程序
     menu_root.protocol("WM_DELETE_WINDOW", on_closing)
 

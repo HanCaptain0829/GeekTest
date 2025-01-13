@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, PhotoImage
 from datetime import datetime
 from data.BugAmountSql import query_bugsum
 from data.TaskAmountSql import query_tasksum
@@ -29,7 +29,12 @@ def statistics_page(parent,username):
     # 设置窗口不可改变大小
     statistics_root.resizable(False, False)
     # 设置窗口图标
-    statistics_root.iconbitmap("picture/xmind.ico")
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    statistics_root.iconphoto(True, icon_image)
+
+    statistics_root.lift()
+    statistics_root.grab_set()
     # 自定义样式
     style = ttk.Style()
     style.configure('Custom.TLabel', background='#f8f9fa', foreground='#212529', font=("微软雅黑", 12, 'bold'))

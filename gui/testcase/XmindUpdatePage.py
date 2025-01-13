@@ -2,7 +2,7 @@
 import sys
 import tkinter as tk
 import subprocess
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, PhotoImage
 from data.CaseSql import query_product, query_lib2, query_lib, delete_case
 from data.InsertCaseSql import insert_case, insert_caselib
 from data.TestTaskSql import insert_task
@@ -38,9 +38,13 @@ def UpdatePage(parent, username, testcase, product_id, product_name_val):
     updateroot = tk.Toplevel(parent)
     updateroot.resizable(False, False)
     updateroot.title('上传到哪个用例库？')
-    updateroot.iconbitmap("picture/xmind.ico")
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    updateroot.iconphoto(True, icon_image)
     ttk.Style().theme_use('alt')
     style = ttk.Style()
+    updateroot.lift()
+    updateroot.grab_set()
 
     # 配置 Treeview 样式
     style.configure("Custom.Treeview", rowheight=30, font=('微软雅黑', 8))
@@ -150,7 +154,11 @@ def UpdatePage(parent, username, testcase, product_id, product_name_val):
         lib_root = tk.Toplevel(parent)
         lib_root.title("Xmind用例上传")
         lib_root.resizable(False, False)
-        lib_root.iconbitmap("picture/xmind.ico")
+        icon_path = "picture/xmind.png"
+        icon_image = PhotoImage(file=icon_path)
+        lib_root.iconphoto(True, icon_image)
+        lib_root.lift()
+        lib_root.grab_set()
 
         screen_width = lib_root.winfo_screenwidth()
         screen_height = lib_root.winfo_screenheight()
@@ -276,7 +284,11 @@ def xmind_module_trigger(parent, username):
     xmind_module_root = tk.Toplevel(parent)
     xmind_module_root.title("上传到哪个项目？")
     xmind_module_root.resizable(False, False)
-    xmind_module_root.iconbitmap("picture/xmind.ico")
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    xmind_module_root.iconphoto(True, icon_image)
+    xmind_module_root.lift()
+    xmind_module_root.grab_set()
 
     screen_width = xmind_module_root.winfo_screenwidth()
     screen_height = xmind_module_root.winfo_screenheight()

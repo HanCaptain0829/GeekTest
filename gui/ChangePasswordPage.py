@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox,PhotoImage
 
 from data.ChangePsSql import update_password
 from tkinter import ttk
@@ -25,7 +25,10 @@ def change_pswd(parent,username):
     # 设置窗口不可改变大小
     password_root.resizable(False, False)
     # 设置窗口图标
-    password_root.iconbitmap("picture/xmind.ico")
+
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    password_root.iconphoto(True, icon_image)
 
     # 设置窗口大小和位置
     screen_width = password_root.winfo_screenwidth()

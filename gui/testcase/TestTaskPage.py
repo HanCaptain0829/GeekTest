@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, PhotoImage
 import tkinter as tk
 from tkcalendar import DateEntry
 from data.TestTaskSql import query_people
@@ -9,7 +9,9 @@ import ctypes
 def new_testtask(parent,taskdata,update_testtask_button):
     testtask_root = tk.Toplevel(parent)
     testtask_root.resizable(False, False)
-    testtask_root.iconbitmap("picture/xmind.ico")
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    testtask_root.iconphoto(True, icon_image)
     testtask_root.title('测试单配置')
     # 设置testtask_root在最上层且锁定操作
     testtask_root.lift()

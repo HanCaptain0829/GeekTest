@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk,PhotoImage
 from menu.UserOption import user_info
 
 def userinfo_page(parent,username):
@@ -24,7 +24,12 @@ def userinfo_page(parent,username):
     # 设置窗口不可改变大小
     userinfo_root.resizable(False, False)
     # 设置窗口图标
-    userinfo_root.iconbitmap("picture/xmind.ico")
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    userinfo_root.iconphoto(True, icon_image)
+
+    userinfo_root.lift()
+    userinfo_root.grab_set()
 
     # 自定义样式
     style = ttk.Style()

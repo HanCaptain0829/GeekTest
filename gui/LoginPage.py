@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox,PhotoImage
 from gui.MenuPage import menu_page
 from log.LogSql import log_input
 from tkinter import ttk
@@ -16,9 +16,11 @@ def login_page():
     # 设置窗口不可改变大小
     root.resizable(False, False)
     # 设置窗口图标
-    root.iconbitmap("picture/xmind.ico")
+    icon_path = "picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    root.iconphoto(True, icon_image)
 
-    root.option_add('*TCombobox*Listbox*Font', ('微软雅黑', 11))
+    root.option_add('*TCombobox*Listbox*Font', ('Helvetica Neue', 11))
 
     # 设置窗口大小和位置
     screen_width = root.winfo_screenwidth()
@@ -35,7 +37,7 @@ def login_page():
     # 标题部分
     title_frame = tk.Frame(container, bg="#0c1622", pady=10)
     title_frame.pack(fill=tk.X)
-    title_label = tk.Label(title_frame, text="GeekTest登录", font=("微软雅黑", 25, "bold"), fg="white", bg="#0c1622",
+    title_label = tk.Label(title_frame, text="GeekTest登录", font=("Helvetica Neue", 30, "bold"), fg="white", bg="#0c1622",
                            padx=15)
     title_label.pack(side=tk.LEFT)
 
@@ -44,11 +46,11 @@ def login_page():
     username_var.set('刘正晗')
     username_frame = tk.Frame(container, bg="white", pady=25)
     username_frame.pack(pady=(40, 0))
-    username_label = tk.Label(username_frame, text="禅道用户:", font=("微软雅黑", 12), bg="white", padx=16)
+    username_label = tk.Label(username_frame, text="禅道用户:", font=("Helvetica Neue", 14), bg="white", padx=16)
     username_label.pack(side=tk.LEFT)
 
     username_combobox = ttk.Combobox(username_frame, textvariable=username_var, values=Login.qa_list, width=28,
-                                     font=("微软雅黑", 11),state='readonly')
+                                     font=("Helvetica Neue", 14),state='readonly')
     username_combobox.pack(fill=tk.X, expand=True, padx=(10, 10), pady=0)
     username_combobox.config(justify='center')
     username_combobox.timer_id = None
@@ -57,9 +59,9 @@ def login_page():
     # 密码输入部分
     password_frame = tk.Frame(container, bg="white", pady=25)
     password_frame.pack(pady=0)
-    password_label = tk.Label(password_frame, text="禅道密码:", font=("微软雅黑", 12), bg="white", padx=1)
+    password_label = tk.Label(password_frame, text="禅道密码:", font=("Helvetica Neue", 13), bg="white", padx=1)
     password_label.grid(row=0, column=0, sticky=tk.W, padx=(16, 12))
-    password_entry = tk.Entry(password_frame, show="*", width=24, font=("微软雅黑", 14), bd=2, relief='groove')
+    password_entry = tk.Entry(password_frame, show="*", width=26, font=("Helvetica Neue", 16), bd=2, relief='groove')
     password_entry.grid(row=0, column=1, sticky=tk.W + tk.E, padx=(14, 14), pady=2)
 
     # 加载图片
@@ -88,11 +90,8 @@ def login_page():
         var.set(not var.get())
 
     # 提交按钮
-    submit_button = tk.Button(container, text="登 录", font=("微软雅黑", 13), bg="#222222", fg="#ffffff", padx=10,
-                              pady=4)
+    submit_button = ttk.Button(container, text="登 录")
     submit_button.pack(pady=50)
-    submit_button.bind("<Enter>", lambda event: bg_color(event, "#808080"))
-    submit_button.bind("<Leave>", lambda event: bg_color(event, "#222222"))
     submit_button.config(command=lambda: submit_credentials(username_var, password_entry))
 
     # 为根窗口绑定回车键事件
@@ -108,7 +107,7 @@ def login_page():
         password = password_entry.get()
 
         if Login.login_verify(username, password) == 1:
-            messagebox.showerror("错误", "密码不能为空！")
+            messagebox.showerror("错误", "密码不能为空！",icon="error")
         elif Login.login_verify(username, password) == 0:
             messagebox.showinfo("成功", f"{username},恭喜您登录成功!")
             #版本号修改
@@ -117,6 +116,6 @@ def login_page():
             password_entry.delete(0, tk.END)
             menu_page(root, username)
         else:
-            messagebox.showerror("错误", "禅道密码错误！")
+            messagebox.showerror("错误", "禅道密码错误！",icon="error")
 
     root.mainloop()

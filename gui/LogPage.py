@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, PhotoImage
 from itertools import islice
 from log.LogSql import log_query
 
@@ -12,7 +12,10 @@ def log_page(parent,username):
     log_root.title('操作日志')
     width=1300
     height=770
-    log_root.iconbitmap("picture/xmind.ico")
+    icon_path="picture/xmind.png"
+    icon_image = PhotoImage(file=icon_path)
+    log_root.iconphoto(True, icon_image)
+
     # 设置 Treeview 样式
     ttk.Style().theme_use('alt')
     log_root.geometry('1300x770')
